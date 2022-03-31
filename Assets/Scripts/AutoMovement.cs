@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutoMovement : MonoBehaviour
 {
     public float speed = 3.0f;
-
+    public float maxX = 10f;
 
 
 
@@ -21,5 +21,11 @@ public class AutoMovement : MonoBehaviour
         var x = Vector3.right;
       
         transform.position += x* speed * Time.deltaTime;
+
+        if(transform.position.x > maxX || transform.position.x < -maxX)
+        {
+            Destroy(this.gameObject);
+        }
     }
+
 }
