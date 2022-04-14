@@ -30,6 +30,25 @@ public class PlayerMovement : MonoBehaviour
         //transform.position = new Vector3(transform.position.x + xMovement , 0, 0);
         transform.Translate(xMovement, yMovement, 0);
 
+        if (GetComponent<Rigidbody2D>().gravityScale > 0 && transform.position.y < -10)
+        {
+            
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            GetComponent<Rigidbody2D>().angularVelocity = 0;
+            transform.position = new Vector2 (0,0);
+            transform.eulerAngles = new Vector2(0, 0);
 
+        }
     }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        GetComponent<Rigidbody2D>().gravityScale = 2;
+    }
+
+
+
+
+
 }
